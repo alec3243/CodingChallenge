@@ -8,11 +8,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Converters {
+public class Converter {
 
     private ModelMapper modelMapper;
 
-    public Converters() {
+    public Converter() {
         this.modelMapper = new ModelMapper();
     }
 

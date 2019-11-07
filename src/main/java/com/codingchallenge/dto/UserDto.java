@@ -3,6 +3,7 @@ package com.codingchallenge.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.util.Objects;
 import java.util.Set;
 
 public class UserDto {
@@ -85,5 +86,37 @@ public class UserDto {
 
     public void setOrganizations(Set<OrganizationDto> organizations) {
         this.organizations = organizations;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserDto userDto = (UserDto) o;
+        return Objects.equals(id, userDto.id) &&
+                Objects.equals(firstName, userDto.firstName) &&
+                Objects.equals(lastName, userDto.lastName) &&
+                Objects.equals(email, userDto.email) &&
+                Objects.equals(address, userDto.address) &&
+                Objects.equals(phone, userDto.phone) &&
+                Objects.equals(organizations, userDto.organizations);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, email, address, phone, organizations);
+    }
+
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", organizations=" + organizations +
+                '}';
     }
 }
