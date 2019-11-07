@@ -1,5 +1,6 @@
 package com.codingchallenge.services;
 
+import com.codingchallenge.exceptions.ResourceNotFoundException;
 import com.codingchallenge.models.Organization;
 import com.codingchallenge.models.User;
 import com.codingchallenge.repositories.UserRepository;
@@ -26,6 +27,6 @@ public class UserService {
     }
 
     User getUserById(Long id) {
-        return userRepository.findById(id).orElseThrow();
+        return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No organization exists with id " + id));
     }
 }

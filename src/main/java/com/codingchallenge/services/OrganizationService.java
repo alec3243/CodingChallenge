@@ -1,11 +1,11 @@
 package com.codingchallenge.services;
 
+import com.codingchallenge.exceptions.ResourceNotFoundException;
 import com.codingchallenge.models.Organization;
 import com.codingchallenge.models.User;
 import com.codingchallenge.repositories.OrganizationRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
 
@@ -22,7 +22,7 @@ public class OrganizationService {
 
     private Organization getOrganizationById(Long id) {
         Optional<Organization> optional = organizationRepository.findById(id);
-        return optional.orElseThrow();
+        return optional.orElseThrow(() -> new ResourceNotFoundException("No organization exists with id " + id));
     }
 
     public Organization createOrganization(Organization organization) {
@@ -43,7 +43,7 @@ public class OrganizationService {
         if (users.contains(user)) {
             users.remove(user);
         } else {
-            throw new NoSuchElementException();
+            throw new ResourceNotFoundException("User does not exist in organization");
         }
         return organizationRepository.save(organization);
     }

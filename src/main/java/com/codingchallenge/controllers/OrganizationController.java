@@ -23,6 +23,11 @@ public class OrganizationController {
         this.converter = converter;
     }
 
+    /**
+     * Creates an organization, and returns the resulting organization
+     * @param organizationDto Organization to be created
+     * @return The resulting organization
+     */
     @PostMapping
     public OrganizationDto createOrganization(@RequestBody OrganizationDto organizationDto) {
         Organization organization = converter.convertToModel(organizationDto);
@@ -30,12 +35,24 @@ public class OrganizationController {
         return converter.convertToDto(result);
     }
 
+    /**
+     * Adds an existing user to an existing organization using the provided IDs. If no records with the matching IDs are found, or if the user already belongs to the organization, then a 500 code is returned.
+     * @param organizationId ID for organization
+     * @param userId ID for user
+     * @return The resulting organization
+     */
     @PatchMapping("/{organizationId}/add-user/{userId}")
     public OrganizationDto addUserToOrganization(@PathVariable Long organizationId, @PathVariable Long userId) {
         Organization organization = organizationService.addUserToOrganization(organizationId, userId);
         return converter.convertToDto(organization);
     }
 
+    /**
+     * Deletes an existing user from an existing organization.
+     * @param organizationId
+     * @param userId
+     * @return
+     */
     @PatchMapping("/{organizationId}/delete-user/{userId}")
     public OrganizationDto deleteUserFromOrganization(@PathVariable Long organizationId, @PathVariable Long userId) {
         Organization organization = organizationService.deleteUserFromOrganization(organizationId, userId);
