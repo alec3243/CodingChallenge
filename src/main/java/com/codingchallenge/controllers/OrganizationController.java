@@ -36,7 +36,7 @@ public class OrganizationController {
     }
 
     /**
-     * Adds an existing user to an existing organization using the provided IDs. If no records with the matching IDs are found, or if the user already belongs to the organization, then a 500 code is returned.
+     * Adds an existing user to an existing organization using the provided IDs. If no records with the matching IDs are found, a 404 code is returned.
      * @param organizationId ID for organization
      * @param userId ID for user
      * @return The resulting organization
@@ -48,10 +48,10 @@ public class OrganizationController {
     }
 
     /**
-     * Deletes an existing user from an existing organization.
-     * @param organizationId
-     * @param userId
-     * @return
+     * Deletes an existing user from an existing organization. If no records with the matching IDs are found, a 404 code is returned.
+     * @param organizationId ID for organization
+     * @param userId ID for user
+     * @return The resulting organization
      */
     @PatchMapping("/{organizationId}/delete-user/{userId}")
     public OrganizationDto deleteUserFromOrganization(@PathVariable Long organizationId, @PathVariable Long userId) {
@@ -59,6 +59,11 @@ public class OrganizationController {
         return converter.convertToDto(organization);
     }
 
+    /**
+     * Gets a collection of all users that belong to the specified organization. If no organization with a matching ID is found, a 404 code is returned.
+     * @param organizationId ID for organization
+     * @return The collection of users which belong to the organization
+     */
     @GetMapping("/{organizationId}")
     public Set<UserDto> getUsersFromOrganization(@PathVariable Long organizationId) {
         Set<User> users = organizationService.getUsersFromOrganization(organizationId);

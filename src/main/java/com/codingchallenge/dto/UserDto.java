@@ -98,13 +98,12 @@ public class UserDto {
                 Objects.equals(lastName, userDto.lastName) &&
                 Objects.equals(email, userDto.email) &&
                 Objects.equals(address, userDto.address) &&
-                Objects.equals(phone, userDto.phone) &&
-                Objects.equals(organizations, userDto.organizations);
+                Objects.equals(phone, userDto.phone);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, email, address, phone, organizations);
+        return Objects.hash(id, firstName, lastName, email, address, phone);
     }
 
     @Override
@@ -116,7 +115,6 @@ public class UserDto {
                 ", email='" + email + '\'' +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
-                ", organizations=" + organizations +
                 '}';
     }
 }

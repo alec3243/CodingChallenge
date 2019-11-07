@@ -84,13 +84,12 @@ public class Organization {
         return Objects.equals(id, that.id) &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(address, that.address) &&
-                Objects.equals(phone, that.phone) &&
-                Objects.equals(users, that.users);
+                Objects.equals(phone, that.phone);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, address, phone, users);
+        return Objects.hash(id, name, address, phone);
     }
 
     @Override
@@ -100,7 +99,6 @@ public class Organization {
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
-                ", users=" + users +
                 '}';
     }
 }

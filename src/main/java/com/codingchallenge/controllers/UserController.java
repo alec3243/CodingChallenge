@@ -23,12 +23,22 @@ public class UserController {
         this.converter = converter;
     }
 
+    /**
+     * Creates a user, and returns the resulting user
+     * @param userDto User to be created
+     * @return The resulting user
+     */
     @PostMapping
     public UserDto createUser(@RequestBody UserDto userDto) {
         User user = converter.convertToModel(userDto);
         return converter.convertToDto(userService.createUser(user));
     }
 
+    /**
+     * Gets a collection of all organizations that the specified user belongs to. If no user with a matching ID is found, a 404 code is returned.
+     * @param userId ID for user
+     * @return The collection of organizations which the user belongs to
+     */
     @GetMapping("/{userId}")
     public Set<OrganizationDto> getOrganizationsFromUser(@PathVariable Long userId) {
         Set<Organization> organizations = userService.getOrganizationsFromUser(userId);

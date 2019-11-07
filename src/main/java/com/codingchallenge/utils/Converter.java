@@ -7,6 +7,9 @@ import com.codingchallenge.models.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+/**
+ * Utility class containing methods for converting data to/from their respective DTO/model forms
+ */
 @Component
 public class Converter {
 
