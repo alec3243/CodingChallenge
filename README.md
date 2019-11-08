@@ -14,3 +14,6 @@
 ### Usage
 * Navigate to `http://localhost:8080/swagger-ui.html` or `http://localhost:8080`
 * Use the provided Swagger UI to test the endpoints
+
+### Data Model
+![Alt](datamodel.png)
