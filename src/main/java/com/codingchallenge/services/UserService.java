@@ -42,6 +42,6 @@ public class UserService {
      * @return The resulting user
      */
     User getUserById(Long id) {
-        return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No organization exists with id " + id));
+        return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No user exists with id " + id));
     }
 }
